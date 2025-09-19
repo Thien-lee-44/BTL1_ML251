@@ -1,5 +1,6 @@
 # BTL1 Machine Learning (CO3117) - Machine Learning (ML) with text Data
 ## *Overview and goal of this excercise*
+
 Through all BTL, these excercises aim to apply machine learning knowledge to various data types, utilizing the traditional machine learning pipeline and the modern machine learning pipeline.
 
 BTL1 focuses on tabular data. 
@@ -17,6 +18,15 @@ BTL1 focuses on tabular data.
     | 2312046 | Bùi Ngọc Minh | minh.buingocbkhoa@hcmut.edu.vn |
     | 2313233 | Lê Trọng Thiện | thien.lee@hcmut.edu.vn |
 
+
+## **Project structure**
+The project includes 1 file in ./notebook folder containing all the code. The collab file is also available [here](https://colab.research.google.com/drive/1goaS_xxgNi6SsKrlAPgkdIduMiJ7RZDy#scrollTo=cea_BvuSOWI4)
+
+The project also includes 1 plot folder containing all plots used in this README file.
+
+## *Setup and run*
+
+The collab file is set-up to be able to run-all. It automatically downloads the data and libratries during the run process.
 
 ## *Dataset* 
 dataset chosen is over 10k entries of various car models' features, used to predict car prices.
@@ -92,8 +102,7 @@ Graphing the distribution of column "msrp" yeilds:
 fig1 = px.histogram(df, x="msrp", nbins=50, title="MSRP Distribution")
 fig1.show()
 ```
-
-> Insert image
+![](plots/msrp_before.png)
 
 The conclusions are:
 + The data is very right skewed.
@@ -104,6 +113,14 @@ We decided to do IRQ in the preprocessing step to remove outliers and also reduc
 #### *Data relationship* 
 
 We expore the numerical features' relationship with 'msrp_log' though fitting it to a polynomial model with degree 1, 2 and 3:
+
+![](plots/n_door_poly_fit.png)
+
+![](plots/year_poly_fit.png)
+![](plots/city_poly_fit.png)
+![](plots/engine_cyllinder_poly_fit.png)
+![](plots/engine_hp_poly_fit.png)
+![](plots/highway_poly_fit.png)
 
 The conclusions are:
 + A lot of features are non-polynomial, some of them are very skewed, like the number of doors.
@@ -117,6 +134,7 @@ fig4 = px.imshow(c_table, text_auto=True, color_continuous_scale='RdBu_r', title
 fig4.update_traces(textfont_size=9.5)
 fig4.show()
 ```
+![](plots/corr_heatmap.png)
 
 ### *Preprocessing*
 
@@ -133,7 +151,7 @@ df = df[df["msrp"].between(Q1 - 1.5*IQR, Q3 + 1.5*IQR)]
 This reduces the number of entries to 10146, still over 10k.
 
 IQR also reduces skew-ness in the data:
-
+![](plots/msrp_after_irq.png)
 
 ### Train and test traditional regression models
 
@@ -184,6 +202,16 @@ Our group fit the data to these models:
 + KNN regressor, k = 5, 10, and 50
 
 #### *Results*
+
+![](plots/linear.png)
+![](plots/lasso.png)
+![](plots/logistic.png)
+![](plots/random_forest_50.png)
+![](plots/random_forest_100.png)
+![](plots/SVR.png)
+![](plots/KNN_5.png)
+![](plots/KNN_10.png)
+![](plots/KNN_50.png)
 
 | model        | train_mse    | train_r2     | test_mse   | test_r2 |
 | ------------ | ------------ | ------------ | ---------- | ------- |
